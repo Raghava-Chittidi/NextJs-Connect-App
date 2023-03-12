@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "useUnknownInCatchVariables": false,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,6 +16,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/NewPost.tsx",
+    "pages/api/middleware.ts",
+    "pages/api/posts/create.ts"
+  ],
   "exclude": ["node_modules"]
 }
