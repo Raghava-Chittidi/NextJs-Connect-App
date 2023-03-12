@@ -12,6 +12,7 @@ import AuthContext from "../../store/AuthContext";
 import { IUser } from "../../models/User";
 import mongoose from "mongoose";
 import Comment from "../../models/Comment";
+import Head from "next/head";
 
 export interface IFriend extends IUser {
   _id: mongoose.Types.ObjectId;
@@ -23,6 +24,13 @@ const ProfilePage = ({ user }: { user: string }) => {
 
   return (
     <>
+      <Head>
+        <title>{currentUser.name}'s Page</title>
+        <meta
+          name="description"
+          content={`${currentUser.name}'s Profile Page`}
+        />
+      </Head>
       <Header />
       <div className="xl:w-[70%] relative m-auto">
         <Profile

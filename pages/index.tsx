@@ -10,6 +10,7 @@ import Contacts from "../components/Contacts/Contacts";
 import Comment from "../models/Comment";
 import Chat from "../models/Chat";
 import User from "../models/User";
+import Head from "next/head";
 
 const Home = ({ posts, chats }: { posts: string; chats: string }) => {
   const { isLoggedIn, userData } = useContext(AuthContext);
@@ -21,6 +22,13 @@ const Home = ({ posts, chats }: { posts: string; chats: string }) => {
   const currentPosts = JSON.parse(posts);
   return (
     <>
+      <Head>
+        <title>All Posts</title>
+        <meta
+          name="description"
+          content={`View all the interesting posts that millions of people around the world have to share.`}
+        />
+      </Head>
       <Header />
       <Menu />
       <div className="flex flex-col justify-center items-center m-auto mt-12">

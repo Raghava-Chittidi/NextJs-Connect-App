@@ -1,4 +1,5 @@
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useRef, useState } from "react";
 import AuthContext from "../store/AuthContext";
@@ -70,63 +71,72 @@ const Signup = () => {
   }
 
   return (
-    <form onSubmit={loginMode ? loginHandler : signupHandler}>
-      <div className="flex flex-col p-5 pt-1 text-lg bg-white rounded-lg w-1/2 m-auto mt-[10%] text-center md:w-1/3">
-        <h1 className="text-3xl">{loginMode ? "Login" : "Sign Up"}</h1>
-        <div className="mt-5">
-          {!loginMode ? (
-            <>
-              <input
-                className="input-login-signup"
-                type="text"
-                id="name"
-                placeholder="Name"
-                ref={nameInputRef}
-              />
-              <input
-                className="input-login-signup"
-                type="text"
-                id="image"
-                placeholder="Image Url"
-                ref={imageInputRef}
-              />
-            </>
-          ) : (
-            ""
-          )}
-          <input
-            className="input-login-signup"
-            type="text"
-            id="email"
-            placeholder="Email"
-            ref={emailInputRef}
-          />
-          <input
-            className="input-login-signup"
-            type="password"
-            id="password"
-            placeholder="Password"
-            ref={passwordInputRef}
-          />
-          {error ? <p className="text-red-500">{error}</p> : ""}
+    <>
+      <Head>
+        <title>Auth</title>
+        <meta
+          name="description"
+          content={`Login or create a free account to connect with people around the world.`}
+        />
+      </Head>
+      <form onSubmit={loginMode ? loginHandler : signupHandler}>
+        <div className="flex flex-col p-5 pt-1 text-lg bg-white rounded-lg w-1/2 m-auto mt-[10%] text-center md:w-1/3">
+          <h1 className="text-3xl">{loginMode ? "Login" : "Sign Up"}</h1>
+          <div className="mt-5">
+            {!loginMode ? (
+              <>
+                <input
+                  className="input-login-signup"
+                  type="text"
+                  id="name"
+                  placeholder="Name"
+                  ref={nameInputRef}
+                />
+                <input
+                  className="input-login-signup"
+                  type="text"
+                  id="image"
+                  placeholder="Image Url"
+                  ref={imageInputRef}
+                />
+              </>
+            ) : (
+              ""
+            )}
+            <input
+              className="input-login-signup"
+              type="text"
+              id="email"
+              placeholder="Email"
+              ref={emailInputRef}
+            />
+            <input
+              className="input-login-signup"
+              type="password"
+              id="password"
+              placeholder="Password"
+              ref={passwordInputRef}
+            />
+            {error ? <p className="text-red-500">{error}</p> : ""}
+          </div>
+          <button className="bg-blue-500 w-full mt-5 m-auto rounded-lg text-white h-10 hover:bg-blue-600">
+            {loginMode ? "Login" : "Sign Up"}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setLoginMode((prevState) => !prevState);
+              setError(null);
+            }}
+            className="text-base m-auto mt-2 hover:underline text-blue-400"
+          >
+            {loginMode
+              ? "Don't have an account? Create one here"
+              : "Already have an account? Login here"}
+          </button>
         </div>
-        <button className="bg-blue-500 w-full mt-5 m-auto rounded-lg text-white h-10 hover:bg-blue-600">
-          {loginMode ? "Login" : "Sign Up"}
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setLoginMode((prevState) => !prevState);
-            setError(null);
-          }}
-          className="text-base m-auto mt-2 hover:underline text-blue-400"
-        >
-          {loginMode
-            ? "Don't have an account? Create one here"
-            : "Already have an account? Login here"}
-        </button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 
